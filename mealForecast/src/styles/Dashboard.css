@@ -1,0 +1,249 @@
+.dashboard-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow-y: auto;
+  transition: background 0.5s ease;
+}
+
+.dashboard-wrapper.light {
+  background: linear-gradient(135deg, #74ebd5, #acb6e5);
+  background-attachment: fixed;
+  background-size: cover;
+  color: #2c3e50;
+}
+
+.dashboard-wrapper.dark {
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  background-attachment: fixed;
+  background-size: cover;
+  color: #f8f9fa;
+}
+
+.dashboard-container {
+  min-height: 100vh;
+  padding: 120px 20px 60px;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Title for the dashboard */
+.dashboard-title {
+  font-size: 36px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.dashboard-wrapper.light .dashboard-title {
+  color: #2c3e50;
+}
+
+.dashboard-wrapper.dark .dashboard-title {
+  color: #f8fafc;
+}
+
+/* Date range container */
+.date-range-container {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.date-label {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.date-input {
+  padding: 12px 15px;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.dashboard-wrapper.light .date-input {
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+.dashboard-wrapper.dark .date-input {
+  border: 1px solid #334155;
+  background-color: #1f2937;
+  color: #f8fafc;
+}
+
+.dashboard-wrapper.light .date-input:focus {
+  border-color: #4CAF50;
+  outline: none;
+}
+
+.dashboard-wrapper.dark .date-input:focus {
+  border-color: #60a5fa;
+  outline: none;
+}
+
+/* Styling for the food select dropdown */
+.select-container {
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  margin-bottom: 30px;
+}
+
+.dashboard-wrapper.light .select-container {
+  background-color: rgba(255, 255, 255, 0.95);
+  color: #333;
+}
+
+.dashboard-wrapper.dark .select-container {
+  background-color: rgba(30, 41, 59, 0.95);
+  color: #f8fafc;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.select-label {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.food-select {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.dashboard-wrapper.light .food-select {
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+.dashboard-wrapper.dark .food-select {
+  border: 1px solid #334155;
+  background-color: #1f2937;
+  color: #f8fafc;
+}
+
+.dashboard-wrapper.light .food-select:focus {
+  border-color: #4CAF50;
+  outline: none;
+}
+
+.dashboard-wrapper.dark .food-select:focus {
+  border-color: #60a5fa;
+  outline: none;
+}
+
+.food-select {
+  height: 150px;
+}
+
+.food-select option {
+  padding: 8px;
+}
+
+/* Styling for the chart container */
+.chart-container {
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.dashboard-wrapper.light .chart-container {
+  background-color: rgba(255, 255, 255, 0.95);
+  color: #333;
+}
+
+.dashboard-wrapper.dark .chart-container {
+  background-color: rgba(30, 41, 59, 0.95);
+  color: #f8fafc;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.chart-title {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Recharts tooltip styling */
+.recharts-default-tooltip {
+  border-radius: 8px !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1) !important;
+}
+
+.dashboard-wrapper.light .recharts-default-tooltip {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  border: 1px solid #ddd !important;
+}
+
+.dashboard-wrapper.dark .recharts-default-tooltip {
+  background-color: rgba(30, 41, 59, 0.95) !important;
+  border: 1px solid #334155 !important;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .dashboard-container {
+    padding: 100px 20px 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-container {
+    padding: 80px 15px 30px;
+  }
+  
+  .select-container,
+  .chart-container {
+    padding: 20px;
+  }
+  
+  .dashboard-title {
+    font-size: 28px;
+  }
+  
+  .chart-title {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 576px) {
+  .date-range-container {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .input-group {
+    width: 100%;
+  }
+  
+  .date-input {
+    width: 100%;
+  }
+  
+  .dashboard-title {
+    font-size: 24px;
+  }
+}

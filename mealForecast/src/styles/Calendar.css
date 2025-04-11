@@ -1,0 +1,471 @@
+/* Calendar Wrapper */
+.calendar-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow-y: auto;
+  transition: background 0.5s ease;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.calendar-wrapper.light {
+  background: linear-gradient(135deg, #74ebd5, #acb6e5);
+  color: #2c3e50;
+}
+
+.calendar-wrapper.dark {
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  color: #f8f9fa;
+}
+
+/* Calendar Container */
+.calendar-container {
+  max-width: 1200px;
+  margin: 60px auto 40px;
+  padding: 30px;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.calendar-container.light {
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.calendar-container.dark {
+  background: rgba(30, 41, 59, 0.9);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Calendar Title */
+.calendar-title {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.calendar-title.light {
+  color: #2c3e50;
+}
+
+.calendar-title.dark {
+  color: #f8f9fa;
+}
+
+/* Calendar Content */
+.calendar-content {
+  margin-bottom: 30px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.calendar-inner-container {
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.calendar-inner-container.light {
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.calendar-inner-container.dark {
+  background: rgba(15, 23, 42, 0.95);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.calendar-content .fc {
+  width: 100%;
+  height: 70vh;
+  border-radius: 8px;
+}
+
+/* Calendar Event Styling */
+.fc-event {
+  border: none !important;
+  border-radius: 4px !important;
+  padding: 2px 5px !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+}
+
+.fc-event-light {
+  background-color: #e3f2fd !important;
+  color: #0d47a1 !important;
+  border-left: 3px solid #4CAF50 !important;
+}
+
+.fc-event-dark {
+  background-color: #1e3a8a !important;
+  color: #e0f2fe !important;
+  border-left: 3px solid #60a5fa !important;
+}
+
+.fc-event-content {
+  padding: 2px 4px !important;
+  font-size: 0.85em !important;
+  font-weight: 500 !important;
+}
+
+.fc-event-content-light {
+  color: #0d47a1 !important;
+}
+
+.fc-event-content-dark {
+  color: #e0f2fe !important;
+}
+
+.fc-event:hover {
+  opacity: 0.9 !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2) !important;
+}
+
+/* Day cell styling */
+.fc-daygrid-day-frame {
+  background-color: transparent !important;
+}
+
+.fc-daygrid-day-events {
+  margin-top: 2px !important;
+}
+
+/* FullCalendar Styling */
+.fc-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.calendar-content.light .fc-toolbar {
+  background: rgba(224, 247, 250, 0.8);
+}
+
+.calendar-content.dark .fc-toolbar {
+  background: rgba(16, 42, 66, 0.8);
+}
+
+.fc-button {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.calendar-content.light .fc-button {
+  background: #4CAF50;
+  color: white;
+}
+
+.calendar-content.dark .fc-button {
+  background: #60a5fa;
+  color: white;
+}
+
+.fc-button:hover {
+  opacity: 0.9;
+  transform: scale(1.05);
+}
+
+.fc-button-active {
+  opacity: 0.8;
+}
+
+.fc-toolbar-title {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.calendar-content.light .fc-toolbar-title {
+  color: #2c3e50;
+}
+
+.calendar-content.dark .fc-toolbar-title {
+  color: #f8f9fa;
+}
+
+/* Form Container */
+.form-container {
+  margin-top: 30px;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-container.light {
+  background: rgba(255, 255, 255, 0.95);
+  border-left: 5px solid #4CAF50;
+}
+
+.form-container.dark {
+  background: rgba(30, 41, 59, 0.95);
+  border-left: 5px solid #60a5fa;
+}
+
+.form-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.form-title.light {
+  color: #2c3e50;
+}
+
+.form-title.dark {
+  color: #f8f9fa;
+}
+
+/* Input Container */
+.input-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  margin-bottom: 25px;
+}
+
+.input-icon {
+  position: absolute;
+  left: 15px;
+  font-size: 20px;
+  transition: all 0.3s ease;
+}
+
+.input-icon.light {
+  color: #4CAF50;
+}
+
+.input-icon.dark {
+  color: #60a5fa;
+}
+
+/* Form Inputs */
+.form-input {
+  width: 100%;
+  padding: 14px 14px 14px 45px;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.form-input.light {
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+.form-input.dark {
+  border: 1px solid #334155;
+  background-color: #1f2937;
+  color: #f8f9fa;
+}
+
+.form-input.light:focus {
+  border-color: #4CAF50;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+}
+
+.form-input.dark:focus {
+  border-color: #60a5fa;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(96, 165, 250, 0.3);
+}
+
+/* Date Picker */
+.date-picker-container {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.date-picker-input {
+  width: 100%;
+  padding: 14px 14px 14px 45px;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.date-picker-input.light {
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+.date-picker-input.dark {
+  border: 1px solid #334155;
+  background-color: #1f2937;
+  color: #f8f9fa;
+}
+
+.date-picker-input.light:focus {
+  border-color: #4CAF50;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+}
+
+.date-picker-input.dark:focus {
+  border-color: #60a5fa;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(96, 165, 250, 0.3);
+}
+
+.react-datepicker-wrapper {
+  width: 100%;
+}
+
+/* Buttons */
+.button-group {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 12px 18px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 160px;
+  font-weight: 600;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-add.light {
+  background: linear-gradient(to right, #4CAF50, #388E3C);
+  color: white;
+}
+
+.btn-add.dark {
+  background: linear-gradient(to right, #60a5fa, #3b82f6);
+  color: white;
+}
+
+.btn-update.light {
+  background: linear-gradient(to right, #2196F3, #1976D2);
+  color: white;
+}
+
+.btn-update.dark {
+  background: linear-gradient(to right, #3b82f6, #2563eb);
+  color: white;
+}
+
+.btn-delete.light {
+  background: linear-gradient(to right, #f44336, #d32f2f);
+  color: white;
+}
+
+.btn-delete.dark {
+  background: linear-gradient(to right, #ef4444, #dc2626);
+  color: white;
+}
+
+.btn:hover:not(:disabled) {
+  opacity: 0.9;
+  transform: scale(1.05);
+}
+
+/* Error Styling */
+.error {
+  border-color: #ef4444 !important;
+}
+
+.error-message {
+  position: absolute;
+  bottom: -20px;
+  left: 45px;
+  font-size: 12px;
+  width: 100%;
+  text-align: left;
+}
+
+.error-message.light {
+  color: #ef4444;
+}
+
+.error-message.dark {
+  color: #fca5a5;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .calendar-container {
+    width: 95%;
+    padding: 20px;
+    margin: 40px auto 20px;
+  }
+
+  .calendar-title {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 768px) {
+  .fc-toolbar {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .button-group {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .date-picker-container {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .calendar-title {
+    font-size: 24px;
+  }
+  
+  .form-title {
+    font-size: 20px;
+  }
+  
+  .calendar-content .fc {
+    height: 60vh;
+  }
+  
+  .form-input,
+  .date-picker-input {
+    padding: 12px 12px 12px 40px;
+    font-size: 14px;
+  }
+  
+  .input-icon {
+    font-size: 18px;
+    left: 12px;
+  }
+}

@@ -1,0 +1,51 @@
+/* Footer */
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #1E2A38; /* Dark mode default background */
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+  font-size: 14px;
+  box-sizing: border-box;
+  z-index: 1000; /* Ensure it stays above content */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Light Mode */
+.footer.light {
+  background-color: #F0F2F5; /* Light mode background */
+  color: #333; /* Light mode text */
+}
+
+/* Dark Mode */
+.footer.dark {
+  background-color: #1E2A38; /* Dark mode background */
+  color: white; /* Dark mode text */
+}
+
+/* Hover effect for the footer text */
+.footer span:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* Push content up so it doesn't get hidden behind the footer */
+body {
+  padding-bottom: 50px; /* Adjust this based on the footer height */
+}
+
+/* Ensure dashboard content stays above footer */
+.dashboard-container {
+  position: relative;
+  z-index: 1; /* Keeps dashboard behind navbar but above footer */
+}
+
+/* Responsive: Adjust Layout on Small Screens */
+@media (max-width: 768px) {
+  .footer {
+    font-size: 12px; /* Smaller font size on small screens */
+  }
+}
