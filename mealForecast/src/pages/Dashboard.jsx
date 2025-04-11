@@ -55,7 +55,8 @@ const Dashboard = () => {
     <div className={`dashboard-wrapper ${theme}`}>
       <div className="dashboard-container">
         <h2 className="dashboard-title">
-          🍽️ Sales Forecast Dashboard
+          Sales Forecast Dashboard
+          <span className="title-underline"></span>
         </h2>
 
         {/* Date Range Filter */}
@@ -100,7 +101,7 @@ const Dashboard = () => {
 
         {/* Forecast Chart */}
         <div className="chart-container">
-          <h3 className="chart-title">📈 Forecast Chart</h3>
+          <h3 className="chart-title">Forecast Chart</h3>
           <ResponsiveContainer width="100%" height={400}>
             <LineChart data={filteredData}>
               <CartesianGrid strokeDasharray="3 3" />
