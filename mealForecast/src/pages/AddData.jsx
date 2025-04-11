@@ -142,7 +142,7 @@ const AddData = () => {
       <div className="add-data-container">
         {/* Form Section */}
         <div className="form-section">
-          <h2>Add Future Forecast</h2>
+          <h2 className="section-title">Add Future Forecast</h2>
           <form onSubmit={handleSubmit}>
             <div className="input-container">
               <FaCalendar className="input-icon" />
@@ -213,7 +213,7 @@ const AddData = () => {
         </div>
 
         <div className="table-section">
-          <h3>Data Preview</h3>
+          <h2 className="section-title">Data Preview</h2>
           <div className="data-table-container">
             <table className="data-table">
               <thead>
