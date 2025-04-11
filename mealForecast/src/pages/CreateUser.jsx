@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { FaUser, FaEnvelope, FaLock, FaKey, FaEye, FaEyeSlash } from "react-icons/fa";
+import { FaUser, FaEnvelope, FaLock, FaKey, FaEye, FaEyeSlash, FaSpinner } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useTheme } from "../context/ThemeContext";
@@ -144,9 +144,10 @@ const CreateUser = () => {
   return (
     <div className={`create-user-wrapper ${theme}`}>
       <div className="create-user-container">
-        <h2>Create a New User</h2>
-        <form onSubmit={handleSubmit}>
+        <h2 className="create-user-title">Create a New User</h2>
+        <form onSubmit={handleSubmit} className="create-user-form">
           <div className="create-user-input-container">
+            <FaUser className="create-user-input-icon" />
             <input
               type="text"
               name="username"
@@ -156,11 +157,11 @@ const CreateUser = () => {
               className={errors.username ? "create-user-input-error" : ""}
               required
             />
-            <FaUser className="create-user-input-icon" />
             {errors.username && <span className="create-user-error-message">{errors.username}</span>}
           </div>
           
           <div className="create-user-input-container">
+            <FaEnvelope className="create-user-input-icon" />
             <input
               type="email"
               name="email"
@@ -170,25 +171,26 @@ const CreateUser = () => {
               className={errors.email ? "create-user-input-error" : ""}
               required
             />
-            <FaEnvelope className="create-user-input-icon" />
             {errors.email && <span className="create-user-error-message">{errors.email}</span>}
           </div>
           
           <div className="create-user-input-container">
+            <FaLock className="create-user-input-icon" />
             <select 
               name="role"
               value={formData.role}
               onChange={handleChange}
               required
+              className={errors.role ? "create-user-input-error" : ""}
             >
               <option value="admin">Admin</option>
               <option value="employee">Employee</option>
               <option value="manager">Manager</option>
             </select>
-            <FaLock className="create-user-input-icon" />
           </div>
           
           <div className="create-user-input-container">
+            <FaKey className="create-user-input-icon" />
             <input
               type={showPassword ? "text" : "password"}
               name="password"
@@ -199,7 +201,6 @@ const CreateUser = () => {
               minLength="8"
               required
             />
-            <FaKey className="create-user-input-icon" />
             <span
               className="create-user-password-toggle"
               onClick={() => setShowPassword(!showPassword)}
@@ -210,6 +211,7 @@ const CreateUser = () => {
           </div>
           
           <div className="create-user-input-container">
+            <FaKey className="create-user-input-icon" />
             <input
               type={showConfirmPassword ? "text" : "password"}
               name="confirmPassword"
@@ -220,7 +222,6 @@ const CreateUser = () => {
               minLength="8"
               required
             />
-            <FaKey className="create-user-input-icon" />
             <span
               className="create-user-password-toggle"
               onClick={() => setShowConfirmPassword(!showConfirmPassword)}
@@ -230,8 +231,16 @@ const CreateUser = () => {
             {errors.confirmPassword && <span className="create-user-error-message">{errors.confirmPassword}</span>}
           </div>
           
-          <button type="submit" className="create-user-submit-btn" disabled={isLoading}>
-            {isLoading ? "Creating..." : "Create User"}
+          <button 
+            type="submit" 
+            className="create-user-submit-btn" 
+            disabled={isLoading}
+          >
+            {isLoading ? (
+              <>
+                <FaSpinner className="spin" /> Creating...
+              </>
+            ) : "Create User"}
           </button>
         </form>
       </div>
@@ -247,6 +256,8 @@ const CreateUser = () => {
         draggable
         pauseOnHover
         theme={theme}
+        toastClassName={`toast-${theme}`}
+        style={{ top: '80px' }}
       />
     </div>
   );
