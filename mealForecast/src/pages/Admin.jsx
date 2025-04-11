@@ -4,10 +4,7 @@ import {
   FaUserPlus, 
   FaChartLine, 
   FaFileAlt, 
-  FaClipboardList,
-  FaCog,
-  FaMoon,
-  FaSun
+  FaClipboardList
 } from 'react-icons/fa';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -17,7 +14,7 @@ import '../styles/Admin.css';
 const AdminPage = () => {
   const navigate = useNavigate();
   const [isAdmin, setIsAdmin] = useState(false);
-  const { theme, toggleTheme } = useTheme();
+  const { theme } = useTheme();
 
   useEffect(() => {
     const userRole = localStorage.getItem('role');
@@ -67,16 +64,7 @@ const AdminPage = () => {
     <div className={`admin-page-wrapper ${theme}`}>
       <div className="admin-container">
         <div className="admin-header">
-          <div className="admin-title-wrapper">
-            <h1 className="admin-title">Admin Dashboard</h1>
-            <button 
-              className="theme-toggle"
-              onClick={toggleTheme}
-              aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
-            >
-              {theme === 'light' ? <FaMoon /> : <FaSun />}
-            </button>
-          </div>
+          <h1 className="admin-title">Admin Dashboard</h1>
           <p className="admin-subtitle">Manage all system operations</p>
         </div>
         
