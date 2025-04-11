@@ -12,70 +12,91 @@
   bottom: 0;
   overflow-y: auto;
   transition: background 0.5s ease;
+  background-attachment: fixed;
+  background-size: cover;
 }
 
 .inventory-wrapper.light {
   background: linear-gradient(135deg, #74ebd5, #acb6e5);
-  background-attachment: fixed;
-  background-size: cover;
-  color: #2c3e50;
 }
 
 .inventory-wrapper.dark {
   background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-  background-attachment: fixed;
-  background-size: cover;
-  color: #f8f9fa;
 }
 
 .inventory-container {
-  min-height: 100vh;
-  padding: 120px 20px 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 100px 20px 60px;
+  width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  width: 100%;
+  box-sizing: border-box;
 }
 
 .inventory-container h2 {
-  font-size: 28px;
-  font-weight: bold;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
   text-align: center;
-  margin-bottom: 30px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+  position: relative;
+  padding-bottom: 15px;
 }
 
 .inventory-wrapper.light .inventory-container h2 {
-  color: #2c3e50;
+  color: #fff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .inventory-wrapper.dark .inventory-container h2 {
   color: #f8fafc;
 }
 
+.inventory-container h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  border-radius: 2px;
+}
+
+.inventory-wrapper.light .inventory-container h2::after {
+  background: #4CAF50;
+}
+
+.inventory-wrapper.dark .inventory-container h2::after {
+  background: #60a5fa;
+}
+
 /* Add Item Form */
 .add-item-form {
-  background-color: rgba(255, 255, 255, 0.1);
-  padding: 25px;
+  width: 100%;
+  padding: 30px;
   border-radius: 12px;
-  margin-bottom: 30px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
+  margin-bottom: 30px;
 }
 
 .inventory-wrapper.light .add-item-form {
   background-color: rgba(255, 255, 255, 0.95);
+  color: #333;
 }
 
 .inventory-wrapper.dark .add-item-form {
   background-color: rgba(30, 41, 59, 0.95);
+  color: #f8fafc;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
 .add-item-form h3 {
-  font-size: 22px;
-  margin-bottom: 20px;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
   text-align: center;
-  color: inherit;
 }
 
 .form-grid {
@@ -92,7 +113,7 @@
 }
 
 .input-group label {
-  font-size: 14px;
+  font-size: 0.9rem;
   font-weight: 500;
 }
 
@@ -101,7 +122,7 @@
   width: 100%;
   padding: 12px 15px;
   border-radius: 8px;
-  font-size: 16px;
+  font-size: 1rem;
   transition: all 0.3s ease;
 }
 
@@ -119,16 +140,15 @@
   color: #f8fafc;
 }
 
-.inventory-wrapper.light .add-item-form input:focus,
-.inventory-wrapper.light .add-item-form select:focus {
-  border-color: #4CAF50;
+.add-item-form input:focus,
+.add-item-form select:focus {
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.3);
   outline: none;
 }
 
 .inventory-wrapper.dark .add-item-form input:focus,
 .inventory-wrapper.dark .add-item-form select:focus {
-  border-color: #60a5fa;
-  outline: none;
+  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.3);
 }
 
 .add-button {
@@ -136,7 +156,7 @@
   padding: 14px;
   border: none;
   border-radius: 8px;
-  font-size: 16px;
+  font-size: 1rem;
   cursor: pointer;
   transition: all 0.3s ease;
   display: flex;
@@ -166,8 +186,8 @@
 
 /* Inventory List */
 .inventory-list {
-  background-color: rgba(255, 255, 255, 0.1);
-  padding: 25px;
+  width: 100%;
+  padding: 30px;
   border-radius: 12px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
@@ -175,17 +195,19 @@
 
 .inventory-wrapper.light .inventory-list {
   background-color: rgba(255, 255, 255, 0.95);
+  color: #333;
 }
 
 .inventory-wrapper.dark .inventory-list {
   background-color: rgba(30, 41, 59, 0.95);
+  color: #f8fafc;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
 .inventory-list h3 {
-  font-size: 22px;
-  margin-bottom: 20px;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
   text-align: center;
-  color: inherit;
 }
 
 .empty-message {
@@ -266,14 +288,13 @@ th, td {
   color: #f8fafc;
 }
 
-.inventory-wrapper.light .inventory-list input:focus {
-  border-color: #4CAF50;
+.inventory-list input:focus {
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.3);
   outline: none;
 }
 
 .inventory-wrapper.dark .inventory-list input:focus {
-  border-color: #60a5fa;
-  outline: none;
+  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.3);
 }
 
 /* Status Indicators */
@@ -372,21 +393,25 @@ tr.low-stock td {
   height: 50px;
   border: 5px solid rgba(0, 0, 0, 0.1);
   border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.loading-wrapper.light .loading-spinner {
   border-top-color: #4CAF50;
-  animation: spin 1s ease-in-out infinite;
-  margin-bottom: 20px;
 }
 
 .loading-wrapper.dark .loading-spinner {
-  border-top-color: #10b981;
+  border-top-color: #60a5fa;
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 .loading-wrapper p {
-  font-size: 18px;
+  margin-top: 20px;
+  font-size: 1.1rem;
 }
 
 .loading-wrapper.light p {
@@ -401,17 +426,21 @@ tr.low-stock td {
 .toast-light {
   background: white !important;
   color: #333 !important;
+  border-radius: 8px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
 }
 
 .toast-dark {
   background: #1e293b !important;
   color: #f8fafc !important;
+  border-radius: 8px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25) !important;
 }
 
 /* Responsive Design */
 @media (max-width: 992px) {
   .inventory-container {
-    padding: 100px 20px 40px;
+    padding: 90px 20px 50px;
   }
   
   .form-grid {
@@ -421,7 +450,7 @@ tr.low-stock td {
 
 @media (max-width: 768px) {
   .inventory-container {
-    padding: 80px 15px 30px;
+    padding: 80px 15px 40px;
   }
   
   .add-item-form,
@@ -451,12 +480,12 @@ tr.low-stock td {
 
 @media (max-width: 480px) {
   .inventory-container h2 {
-    font-size: 24px;
+    font-size: 1.6rem;
   }
   
   .add-item-form h3,
   .inventory-list h3 {
-    font-size: 20px;
+    font-size: 1.3rem;
   }
   
   .add-item-form input,

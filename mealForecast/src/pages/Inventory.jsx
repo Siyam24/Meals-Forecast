@@ -30,10 +30,23 @@ const InventoryManagement = () => {
       fetchInventory();
     } else {
       setIsAdmin(false);
-      toast.error("Access Denied: Admins only!");
+      showToast("error", "Access Denied: Admins only!");
       navigate("/dashboard");
     }
   }, [navigate]);
+
+  const showToast = (type, message) => {
+    toast[type](message, {
+      position: "top-right",
+      autoClose: type === "error" ? 5000 : 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: theme,
+    });
+  };
 
   const fetchInventory = async () => {
     setLoading(true);
@@ -42,7 +55,7 @@ const InventoryManagement = () => {
       setInventory(response.data);
       checkLowStock(response.data);
     } catch (error) {
-      toast.error("Error fetching inventory data.");
+      showToast("error", "Error fetching inventory data.");
       console.error(error);
     } finally {
       setLoading(false);
@@ -51,7 +64,7 @@ const InventoryManagement = () => {
 
   const addItem = async () => {
     if (!newItem.name || newItem.quantity < 0) {
-      toast.error("Please enter valid item details.");
+      showToast("error", "Please enter valid item details.");
       return;
     }
 
@@ -59,37 +72,39 @@ const InventoryManagement = () => {
       await axios.post(`${API_BASE_URL}/add_item`, newItem);
       setNewItem({ name: "", quantity: 0, threshold: 5, unit: "" });
       await fetchInventory();
-      toast.success("Item added successfully!");
+      showToast("success", "Item added successfully!");
     } catch (error) {
-      toast.error("Error adding item.");
+      showToast("error", "Error adding item.");
       console.error(error);
     }
   };
 
   const updateQuantity = async (id, newQuantity) => {
     if (newQuantity < 0) {
-      toast.error("Quantity cannot be negative.");
+      showToast("error", "Quantity cannot be negative.");
       return;
     }
 
     try {
       await axios.put(`${API_BASE_URL}/update_quantity/${id}`, { quantity: newQuantity });
       await fetchInventory();
-      toast.success("Quantity updated successfully!");
+      showToast("success", "Quantity updated successfully!");
     } catch (error) {
-      toast.error("Error updating quantity.");
+      showToast("error", "Error updating quantity.");
       console.error(error);
     }
   };
 
-  const deleteItem = async (id) => {
-    try {
-      await axios.delete(`${API_BASE_URL}/delete_item/${id}`);
-      await fetchInventory();
-      toast.success("Item deleted successfully!");
-    } catch (error) {
-      toast.error("Error deleting item.");
-      console.error(error);
+  const confirmDelete = async (id, name) => {
+    if (window.confirm(`Are you sure you want to delete "${name}"?`)) {
+      try {
+        await axios.delete(`${API_BASE_URL}/delete_item/${id}`);
+        await fetchInventory();
+        showToast("success", `"${name}" deleted successfully!`);
+      } catch (error) {
+        showToast("error", "Error deleting item.");
+        console.error(error);
+      }
     }
   };
 
@@ -98,7 +113,12 @@ const InventoryManagement = () => {
       const response = await axios.get(`${API_BASE_URL}/low_stock`);
       if (response.data.low_stock.length > 0) {
         const itemNames = response.data.low_stock.map((item) => `${item.name} (${item.unit || "N/A"})`).join(", ");
-        toast.warning(`Low stock alert: ${itemNames} need restocking!`, { autoClose: false });
+        toast.warning(`Low stock alert: ${itemNames} need restocking!`, { 
+          position: "top-right",
+          autoClose: false,
+          closeButton: true,
+          theme: theme,
+        });
       }
     } catch (error) {
       console.error("Error checking low stock.", error);
@@ -117,17 +137,18 @@ const InventoryManagement = () => {
   return (
     <div className={`inventory-wrapper ${theme}`}>
       <ToastContainer 
-        position="top-right" 
-        autoClose={3000} 
+        position="top-right"
+        autoClose={3000}
         hideProgressBar={false}
-        newestOnTop 
-        closeOnClick 
-        rtl={false} 
-        pauseOnFocusLoss 
-        draggable 
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
         pauseOnHover
         theme={theme}
         toastClassName={`toast-${theme}`}
+        style={{ top: '80px' }}
       />
 
       <div className="inventory-container">
@@ -230,7 +251,7 @@ const InventoryManagement = () => {
                       <td>
                         <button 
                           className="delete-btn"
-                          onClick={() => deleteItem(item.id)}
+                          onClick={() => confirmDelete(item.id, item.name)}
                         >
                           <FaTrash /> Delete
                         </button>
