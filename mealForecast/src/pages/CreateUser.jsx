@@ -143,106 +143,108 @@ const CreateUser = () => {
 
   return (
     <div className={`create-user-wrapper ${theme}`}>
-      <div className="create-user-container">
-        <h2 className="create-user-title">Create a New User</h2>
-        <form onSubmit={handleSubmit} className="create-user-form">
-          <div className="create-user-input-container">
-            <FaUser className="create-user-input-icon" />
-            <input
-              type="text"
-              name="username"
-              placeholder="Username"
-              value={formData.username}
-              onChange={handleChange}
-              className={errors.username ? "create-user-input-error" : ""}
-              required
-            />
-            {errors.username && <span className="create-user-error-message">{errors.username}</span>}
-          </div>
-          
-          <div className="create-user-input-container">
-            <FaEnvelope className="create-user-input-icon" />
-            <input
-              type="email"
-              name="email"
-              placeholder="Email"
-              value={formData.email}
-              onChange={handleChange}
-              className={errors.email ? "create-user-input-error" : ""}
-              required
-            />
-            {errors.email && <span className="create-user-error-message">{errors.email}</span>}
-          </div>
-          
-          <div className="create-user-input-container">
-            <FaLock className="create-user-input-icon" />
-            <select 
-              name="role"
-              value={formData.role}
-              onChange={handleChange}
-              required
-              className={errors.role ? "create-user-input-error" : ""}
+      <div className="create-user-background-container">
+        <div className="create-user-container">
+          <h2 className="create-user-title">Create a New User</h2>
+          <form onSubmit={handleSubmit} className="create-user-form">
+            <div className="create-user-input-container">
+              <FaUser className="create-user-input-icon" />
+              <input
+                type="text"
+                name="username"
+                placeholder="Username"
+                value={formData.username}
+                onChange={handleChange}
+                className={errors.username ? "create-user-input-error" : ""}
+                required
+              />
+              {errors.username && <span className="create-user-error-message">{errors.username}</span>}
+            </div>
+            
+            <div className="create-user-input-container">
+              <FaEnvelope className="create-user-input-icon" />
+              <input
+                type="email"
+                name="email"
+                placeholder="Email"
+                value={formData.email}
+                onChange={handleChange}
+                className={errors.email ? "create-user-input-error" : ""}
+                required
+              />
+              {errors.email && <span className="create-user-error-message">{errors.email}</span>}
+            </div>
+            
+            <div className="create-user-input-container">
+              <FaLock className="create-user-input-icon" />
+              <select 
+                name="role"
+                value={formData.role}
+                onChange={handleChange}
+                required
+                className={errors.role ? "create-user-input-error" : ""}
+              >
+                <option value="admin">Admin</option>
+                <option value="employee">Employee</option>
+                <option value="manager">Manager</option>
+              </select>
+            </div>
+            
+            <div className="create-user-input-container">
+              <FaKey className="create-user-input-icon" />
+              <input
+                type={showPassword ? "text" : "password"}
+                name="password"
+                placeholder="Password (min 8 characters)"
+                value={formData.password}
+                onChange={handleChange}
+                className={errors.password ? "create-user-input-error" : ""}
+                minLength="8"
+                required
+              />
+              <span
+                className="create-user-password-toggle"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? <FaEyeSlash /> : <FaEye />}
+              </span>
+              {errors.password && <span className="create-user-error-message">{errors.password}</span>}
+            </div>
+            
+            <div className="create-user-input-container">
+              <FaKey className="create-user-input-icon" />
+              <input
+                type={showConfirmPassword ? "text" : "password"}
+                name="confirmPassword"
+                placeholder="Confirm Password"
+                value={formData.confirmPassword}
+                onChange={handleChange}
+                className={errors.confirmPassword ? "create-user-input-error" : ""}
+                minLength="8"
+                required
+              />
+              <span
+                className="create-user-password-toggle"
+                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+              >
+                {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
+              </span>
+              {errors.confirmPassword && <span className="create-user-error-message">{errors.confirmPassword}</span>}
+            </div>
+            
+            <button 
+              type="submit" 
+              className="create-user-submit-btn" 
+              disabled={isLoading}
             >
-              <option value="admin">Admin</option>
-              <option value="employee">Employee</option>
-              <option value="manager">Manager</option>
-            </select>
-          </div>
-          
-          <div className="create-user-input-container">
-            <FaKey className="create-user-input-icon" />
-            <input
-              type={showPassword ? "text" : "password"}
-              name="password"
-              placeholder="Password (min 8 characters)"
-              value={formData.password}
-              onChange={handleChange}
-              className={errors.password ? "create-user-input-error" : ""}
-              minLength="8"
-              required
-            />
-            <span
-              className="create-user-password-toggle"
-              onClick={() => setShowPassword(!showPassword)}
-            >
-              {showPassword ? <FaEyeSlash /> : <FaEye />}
-            </span>
-            {errors.password && <span className="create-user-error-message">{errors.password}</span>}
-          </div>
-          
-          <div className="create-user-input-container">
-            <FaKey className="create-user-input-icon" />
-            <input
-              type={showConfirmPassword ? "text" : "password"}
-              name="confirmPassword"
-              placeholder="Confirm Password"
-              value={formData.confirmPassword}
-              onChange={handleChange}
-              className={errors.confirmPassword ? "create-user-input-error" : ""}
-              minLength="8"
-              required
-            />
-            <span
-              className="create-user-password-toggle"
-              onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-            >
-              {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
-            </span>
-            {errors.confirmPassword && <span className="create-user-error-message">{errors.confirmPassword}</span>}
-          </div>
-          
-          <button 
-            type="submit" 
-            className="create-user-submit-btn" 
-            disabled={isLoading}
-          >
-            {isLoading ? (
-              <>
-                <FaSpinner className="spin" /> Creating...
-              </>
-            ) : "Create User"}
-          </button>
-        </form>
+              {isLoading ? (
+                <>
+                  <FaSpinner className="spin" /> Creating...
+                </>
+              ) : "Create User"}
+            </button>
+          </form>
+        </div>
       </div>
       
       <ToastContainer 
