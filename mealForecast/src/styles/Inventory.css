@@ -140,15 +140,19 @@
   color: #f8fafc;
 }
 
-.add-item-form input:focus,
-.add-item-form select:focus {
-  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.3);
+/* Updated input focus styles */
+.inventory-wrapper.light .add-item-form input:focus,
+.inventory-wrapper.light .add-item-form select:focus {
+  border-color: #4CAF50;
+  box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.3);
   outline: none;
 }
 
 .inventory-wrapper.dark .add-item-form input:focus,
 .inventory-wrapper.dark .add-item-form select:focus {
-  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.3);
+  border-color: #60a5fa;
+  box-shadow: 0 0 0 2px rgba(96, 165, 250, 0.3);
+  outline: none;
 }
 
 .add-button {
@@ -288,13 +292,17 @@ th, td {
   color: #f8fafc;
 }
 
-.inventory-list input:focus {
-  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.3);
+/* Updated input focus styles */
+.inventory-wrapper.light .inventory-list input:focus {
+  border-color: #4CAF50;
+  box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.3);
   outline: none;
 }
 
 .inventory-wrapper.dark .inventory-list input:focus {
-  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.3);
+  border-color: #60a5fa;
+  box-shadow: 0 0 0 2px rgba(96, 165, 250, 0.3);
+  outline: none;
 }
 
 /* Status Indicators */
