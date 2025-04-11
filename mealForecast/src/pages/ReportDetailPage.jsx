@@ -4,7 +4,7 @@ import { FaArrowLeft, FaDownload, FaPrint, FaSpinner } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useTheme } from "../context/ThemeContext";
-import "../styles/ReportDetail.css"
+import "../styles/ReportDetail.css";
 
 const ReportDetailPage = () => {
   const { theme } = useTheme();
@@ -73,26 +73,18 @@ const ReportDetailPage = () => {
     <div className={`report-detail-wrapper ${theme}`}>
       <div className="report-detail-container">
         <div id="printable-content">
-          <button 
-            className={`back-button ${theme}`}
-            onClick={() => navigate("/reports")}
-            aria-label="Back to reports"
-          >
-            <FaArrowLeft /> Back to Reports
-          </button>
-          
-          <h2 className={`report-title ${theme}`}>{report.title}</h2>
+          <h2 className="report-title">{report.title}</h2>
           
           <div className="report-summary">
-            <div className={`summary-card ${theme}`}>
+            <div className="summary-card">
               <h3>Total Sales</h3>
               <p>LKR {report.totalSales.toFixed(2)}</p>
             </div>
-            <div className={`summary-card ${theme}`}>
+            <div className="summary-card">
               <h3>Items Sold</h3>
               <p>{report.totalItemsSold}</p>
             </div>
-            <div className={`summary-card ${theme}`}>
+            <div className="summary-card">
               <h3>Status</h3>
               <p className={`status ${report.status.toLowerCase()}`}>
                 {report.status}
@@ -100,9 +92,9 @@ const ReportDetailPage = () => {
             </div>
           </div>
 
-          <div className={`sales-table-container ${theme}`}>
+          <div className="sales-table-container">
             <h3>Sales Details</h3>
-            <table className={`sales-table ${theme}`}>
+            <table className="sales-table">
               <thead>
                 <tr>
                   <th>Date</th>
@@ -131,7 +123,7 @@ const ReportDetailPage = () => {
 
         <div className="report-actions">
           <button 
-            className={`action-button download-button ${theme}`}
+            className="action-button download-button"
             onClick={handleDownload}
             disabled={isDownloading}
           >
@@ -142,7 +134,7 @@ const ReportDetailPage = () => {
             )} Download PDF
           </button>
           <button 
-            className={`action-button print-button ${theme}`}
+            className="action-button print-button"
             onClick={handlePrint}
           >
             <FaPrint /> Print Report
@@ -150,15 +142,9 @@ const ReportDetailPage = () => {
         </div>
 
         <ToastContainer 
+          className="toast-container"
           position="top-right" 
-          autoClose={3000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
+          autoClose={3000} 
           theme={theme}
           toastClassName={`toast-${theme}`}
         />
