@@ -88,7 +88,6 @@ const NavigationBar = () => {
     navigate("/login");
   };
 
-  // Check if a nav link is active
   const isActive = (path) => {
     return location.pathname === path;
   };
@@ -111,10 +110,32 @@ const NavigationBar = () => {
         {isAuthenticated && !loading && (
           <div className="navbar-content">
             <div className="navbar-links">
-              <Link to="/home" className={isActive('/home') ? 'active' : ''}>Home</Link>
-              {role === "admin" && <Link to="/admin" className={isActive('/admin') ? 'active' : ''}>Admin</Link>}
-              <Link to="/reports" className={isActive('/reports') ? 'active' : ''}>Reports</Link>
-              <Link to="/calendar" className={isActive('/calendar') ? 'active' : ''}>Calendar</Link>
+              <Link 
+                to="/home" 
+                className={`nav-link ${isActive('/home') ? 'active' : ''}`}
+              >
+                <span className="nav-link-text">Home</span>
+              </Link>
+              {role === "admin" && (
+                <Link 
+                  to="/admin" 
+                  className={`nav-link ${isActive('/admin') ? 'active' : ''}`}
+                >
+                  <span className="nav-link-text">Admin</span>
+                </Link>
+              )}
+              <Link 
+                to="/reports" 
+                className={`nav-link ${isActive('/reports') ? 'active' : ''}`}
+              >
+                <span className="nav-link-text">Reports</span>
+              </Link>
+              <Link 
+                to="/calendar" 
+                className={`nav-link ${isActive('/calendar') ? 'active' : ''}`}
+              >
+                <span className="nav-link-text">Calendar</span>
+              </Link>
             </div>
 
             <div className="navbar-actions">
@@ -141,7 +162,6 @@ const NavigationBar = () => {
         {loading && <div className="loading">Loading...</div>}
       </nav>
 
-      {/* Main content container with padding to account for fixed navbar */}
       <div className="main-content" style={{ paddingTop: '70px' }}>
         {/* Your page content will be rendered here */}
       </div>
