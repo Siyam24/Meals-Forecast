@@ -9,7 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "react-datepicker/dist/react-datepicker.css";
 import { useTheme } from "../context/ThemeContext";
 import { FaFileAlt, FaCalendarAlt } from "react-icons/fa";
-import "../styles/Calendar.css"
+import "../styles/Calendar.css";
 
 const CalendarPage = () => {
   const { theme } = useTheme();
@@ -23,7 +23,19 @@ const CalendarPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState({});
 
-  // Fetch events from the backend
+  const showToast = (type, message) => {
+    toast[type](message, {
+      position: "top-right",
+      autoClose: type === "error" ? 5000 : 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: theme,
+    });
+  };
+
   useEffect(() => {
     fetchEvents();
   }, []);
@@ -45,7 +57,7 @@ const CalendarPage = () => {
       setEvents(data);
     } catch (error) {
       console.error("Error fetching events:", error);
-      toast.error("Failed to fetch events. Please try again.");
+      showToast("error", "Failed to fetch events. Please try again.");
     }
   };
 
@@ -94,10 +106,10 @@ const CalendarPage = () => {
       
       await fetchEvents();
       setNewEvent({ title: "", start: new Date(), end: new Date() });
-      toast.success("Event added successfully!");
+      showToast("success", "Event added successfully!");
     } catch (error) {
       console.error("Error adding event:", error);
-      toast.error(error.message || "Failed to add event. Please try again.");
+      showToast("error", error.message || "Failed to add event. Please try again.");
     } finally {
       setIsLoading(false);
     }
@@ -130,17 +142,17 @@ const CalendarPage = () => {
       
       await fetchEvents();
       setSelectedEvent(null);
-      toast.success("Event updated successfully!");
+      showToast("success", "Event updated successfully!");
     } catch (error) {
       console.error("Error updating event:", error);
-      toast.error(error.message || "Failed to update event. Please try again.");
+      showToast("error", error.message || "Failed to update event. Please try again.");
     } finally {
       setIsLoading(false);
     }
   };
 
   const handleDeleteEvent = async (event) => {
-    if (window.confirm("Are you sure you want to delete this event?")) {
+    if (window.confirm(`Are you sure you want to delete "${event.title}"?`)) {
       try {
         const token = localStorage.getItem("token");
         const response = await fetch(
@@ -159,10 +171,10 @@ const CalendarPage = () => {
         
         await fetchEvents();
         setSelectedEvent(null);
-        toast.success("Event deleted successfully!");
+        showToast("success", `"${event.title}" deleted successfully!`);
       } catch (error) {
         console.error("Error deleting event:", error);
-        toast.error(error.message || "Failed to delete event. Please try again.");
+        showToast("error", error.message || "Failed to delete event. Please try again.");
       }
     }
   };
@@ -186,7 +198,7 @@ const CalendarPage = () => {
 
   return (
     <div className={`calendar-wrapper ${theme}`}>
-      <div className="calendar-container">
+      <div className={`calendar-container ${theme}`}>
         <h2 className={`calendar-title ${theme}`}>Calendar</h2>
         
         <div className={`calendar-content ${theme}`}>
@@ -360,6 +372,7 @@ const CalendarPage = () => {
         pauseOnHover
         theme={theme}
         toastClassName={`toast-${theme}`}
+        style={{ top: '80px' }}
       />
     </div>
   );
