@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom";
-import { FaCalendar, FaRegSun, FaBox, FaTags, FaDollarSign, FaCogs, FaCashRegister, FaArrowLeft, FaHome } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import { FaCalendar, FaRegSun, FaBox, FaTags, FaDollarSign, FaCogs, FaCashRegister } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useTheme } from "../context/ThemeContext";
@@ -140,16 +140,6 @@ const AddData = () => {
   return isAdmin ? (
     <div className={`add-data-wrapper ${theme}`}>
       <div className="add-data-container">
-        {/* Navigation Buttons */}
-        <div className="navigation-buttons">
-          <button onClick={() => navigate(-1)} className="nav-button">
-            <FaArrowLeft /> Back
-          </button>
-          <Link to="/dashboard" className="nav-button">
-            <FaHome /> Admin Dashboard
-          </Link>
-        </div>
-
         {/* Form Section */}
         <div className="form-section">
           <h2>Add Future Forecast</h2>
@@ -266,6 +256,7 @@ const AddData = () => {
         pauseOnHover
         theme={theme}
         toastClassName={`toast-${theme}`}
+        style={{ top: '80px' }}
       />
     </div>
   ) : null;
