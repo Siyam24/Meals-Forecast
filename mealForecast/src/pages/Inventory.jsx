@@ -38,9 +38,9 @@ const InventoryManagement = () => {
   const showToast = (type, message) => {
     toast[type](message, {
       position: "top-right",
-      autoClose: type === "error" ? 5000 : 3000,
+      autoClose: type === "error" ? 8000 : 5000,
       hideProgressBar: false,
-      closeOnClick: true,
+      closeOnClick: false,
       pauseOnHover: true,
       draggable: true,
       progress: undefined,
@@ -52,11 +52,13 @@ const InventoryManagement = () => {
     setLoading(true);
     try {
       const response = await axios.get(`${API_BASE_URL}/get_inventory`);
-      setInventory(response.data);
-      checkLowStock(response.data);
+      const inventoryData = Array.isArray(response.data) ? response.data : [];
+      setInventory(inventoryData);
+      checkLowStock(inventoryData);
     } catch (error) {
-      showToast("error", "Error fetching inventory data.");
-      console.error(error);
+      console.error("Error fetching inventory:", error);
+      setInventory([]);
+      showToast("error", "Error fetching inventory data. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -70,9 +72,9 @@ const InventoryManagement = () => {
 
     try {
       await axios.post(`${API_BASE_URL}/add_item`, newItem);
-      setNewItem({ name: "", quantity: 0, threshold: 5, unit: "" });
-      await fetchInventory();
       showToast("success", "Item added successfully!");
+      setNewItem({ name: "", quantity: 0, threshold: 5, unit: "" });
+      setTimeout(() => fetchInventory(), 2000);
     } catch (error) {
       showToast("error", "Error adding item.");
       console.error(error);
@@ -87,8 +89,8 @@ const InventoryManagement = () => {
 
     try {
       await axios.put(`${API_BASE_URL}/update_quantity/${id}`, { quantity: newQuantity });
-      await fetchInventory();
       showToast("success", "Quantity updated successfully!");
+      setTimeout(() => fetchInventory(), 2000);
     } catch (error) {
       showToast("error", "Error updating quantity.");
       console.error(error);
@@ -99,8 +101,8 @@ const InventoryManagement = () => {
     if (window.confirm(`Are you sure you want to delete "${name}"?`)) {
       try {
         await axios.delete(`${API_BASE_URL}/delete_item/${id}`);
-        await fetchInventory();
         showToast("success", `"${name}" deleted successfully!`);
+        setTimeout(() => fetchInventory(), 2000);
       } catch (error) {
         showToast("error", "Error deleting item.");
         console.error(error);
@@ -111,17 +113,19 @@ const InventoryManagement = () => {
   const checkLowStock = async (items) => {
     try {
       const response = await axios.get(`${API_BASE_URL}/low_stock`);
-      if (response.data.low_stock.length > 0) {
-        const itemNames = response.data.low_stock.map((item) => `${item.name} (${item.unit || "N/A"})`).join(", ");
+      const lowStockItems = response.data?.low_stock || [];
+      
+      if (lowStockItems.length > 0) {
+        const itemNames = lowStockItems.map((item) => `${item.name} (${item.unit || "N/A"})`).join(", ");
         toast.warning(`Low stock alert: ${itemNames} need restocking!`, { 
           position: "top-right",
-          autoClose: false,
+          autoClose: 10000,
           closeButton: true,
           theme: theme,
         });
       }
     } catch (error) {
-      console.error("Error checking low stock.", error);
+      console.error("Error checking low stock:", error);
     }
   };
 
@@ -138,17 +142,17 @@ const InventoryManagement = () => {
     <div className={`inventory-wrapper ${theme}`}>
       <ToastContainer 
         position="top-right"
-        autoClose={3000}
+        autoClose={5000}
         hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
+        newestOnTop={true}
+        closeOnClick={false}
         rtl={false}
-        pauseOnFocusLoss
+        pauseOnFocusLoss={false}
         draggable
         pauseOnHover
         theme={theme}
         toastClassName={`toast-${theme}`}
-        style={{ top: '80px' }}
+        style={{ top: '80px', zIndex: 9999 }}
       />
 
       <div className="inventory-container">

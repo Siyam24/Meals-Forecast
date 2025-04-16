@@ -103,19 +103,6 @@ const LoginPage = ({ onLogin }) => {
           >
             {loading ? "Logging in..." : "Login"}
           </button>
-
-          <div className="login-page-forgot-password">
-            <a
-              href="#"
-              onClick={(e) => {
-                e.preventDefault();
-                navigate("/forgot-password");
-              }}
-              className="login-page-forgot-link"
-            >
-              <FiHelpCircle size={18} className="login-page-help-icon" /> Forgot Password?
-            </a>
-          </div>
         </form>
       </div>
     </div>
