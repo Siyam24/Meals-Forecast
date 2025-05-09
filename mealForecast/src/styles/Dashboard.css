@@ -302,3 +302,248 @@
     height: 120px;
   }
 }
+/* Festival Analysis Styles */
+.festival-analysis-container {
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  margin-top: 30px;
+}
+
+/* Festival Analysis Section */
+.festival-analysis-container {
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  margin-top: 30px;
+}
+
+.dashboard-wrapper.light .festival-analysis-container {
+  background-color: rgba(255, 255, 255, 0.95);
+  color: #333;
+}
+
+.dashboard-wrapper.dark .festival-analysis-container {
+  background-color: rgba(30, 41, 59, 0.95);
+  color: #f8fafc;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.section-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  border-radius: 2px;
+}
+
+.dashboard-wrapper.light .section-title::after {
+  background: #4CAF50;
+}
+
+.dashboard-wrapper.dark .section-title::after {
+  background: #60a5fa;
+}
+
+.festival-select-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 25px;
+}
+
+.festival-select {
+  padding: 12px 15px;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  min-width: 250px;
+}
+
+.dashboard-wrapper.light .festival-select {
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+.dashboard-wrapper.dark .festival-select {
+  border: 1px solid #334155;
+  background-color: #1f2937;
+  color: #f8fafc;
+}
+
+.dashboard-wrapper.light .festival-select:focus {
+  border-color: #4CAF50;
+  box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.3);
+  outline: none;
+}
+
+.dashboard-wrapper.dark .festival-select:focus {
+  border-color: #60a5fa;
+  box-shadow: 0 0 0 2px rgba(96, 165, 250, 0.3);
+  outline: none;
+}
+
+.analyze-button {
+  padding: 12px 24px;
+  background-color: #6366f1;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.analyze-button:hover {
+  background-color: #4f46e5;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.analyze-button:disabled {
+  background-color: #a5b4fc;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.results-container {
+  margin-top: 20px;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.dashboard-wrapper.light .results-container {
+  background-color: rgba(249, 249, 249, 0.7);
+  border: 1px solid #e2e8f0;
+}
+
+.dashboard-wrapper.dark .results-container {
+  background-color: rgba(15, 23, 42, 0.7);
+  border: 1px solid #334155;
+}
+
+.results-container h4 {
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+  text-align: center;
+  color: inherit;
+}
+
+.food-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.food-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 15px;
+  margin-bottom: 8px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.dashboard-wrapper.light .food-item {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.dashboard-wrapper.dark .food-item {
+  background-color: rgba(30, 41, 59, 0.8);
+}
+
+.food-item:hover {
+  transform: translateX(5px);
+}
+
+.rank {
+  font-weight: bold;
+  margin-right: 15px;
+  font-size: 1.1rem;
+  min-width: 25px;
+  text-align: center;
+}
+
+.dashboard-wrapper.light .rank {
+  color: #4CAF50;
+}
+
+.dashboard-wrapper.dark .rank {
+  color: #60a5fa;
+}
+
+.food-name {
+  flex-grow: 1;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.impact-value {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.dashboard-wrapper.light .impact-value {
+  color: #555;
+}
+
+.dashboard-wrapper.dark .impact-value {
+  color: #d1d5db;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .festival-select-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .festival-select {
+    width: 100%;
+    max-width: none;
+  }
+  
+  .analyze-button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  .festival-analysis-container {
+    padding: 20px;
+  }
+  
+  .section-title {
+    font-size: 1.3rem;
+  }
+  
+  .food-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+  
+  .rank, .food-name, .impact-value {
+    width: 100%;
+  }
+}
